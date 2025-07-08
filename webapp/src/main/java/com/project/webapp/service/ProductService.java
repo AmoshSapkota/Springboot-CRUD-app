@@ -1,12 +1,12 @@
 package com.project.webapp.service;
 
-import com.project.webapp.model.Product;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.project.webapp.model.Product;
 
 @Service
 public class ProductService {
@@ -27,5 +27,18 @@ public class ProductService {
     public void addProduct(Product prod) {
         products.add(prod);
     }
-
+    public void updateProductList(Product prod){
+        for (int i = 0; i < products.size(); i++){
+            if (products.get(i).getProdId() == prod.getProdId()){
+                products.set(i, prod);
+            }
+        }
+    }
+    public void deleteProduct(int prodId){
+        for (int i =0; i < products.size(); i++){
+            if (products.get(i).getProdId() == prodId){
+                products.remove(i); 
+            }
+        }
+    }
 }
