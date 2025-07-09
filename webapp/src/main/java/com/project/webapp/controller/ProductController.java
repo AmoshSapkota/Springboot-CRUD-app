@@ -36,10 +36,10 @@ public class ProductController {
         service.addProduct(prod);
         return "Product added Successfully";
     }
-    @PutMapping("/products")
-    public String updateProductList(@RequestBody Product prod){
-        service.updateProductList(prod);
-        return "Product List updated Successfully!";
+    @PutMapping("/products/{prodId}")
+    public String updateProduct(@PathVariable int prodId, @RequestBody Product prod){
+        service.updateProduct(prodId, prod);
+        return "Product updated Successfully!";
 
     }
     @DeleteMapping("/products/{prodId}")
@@ -49,7 +49,7 @@ public class ProductController {
     }
     //do patch mapping to update single product (partial update)
     @PatchMapping("/products/{prodId}")
-    public String updateProduct(@PathVariable int prodId, @RequestBody Product prod) {
+    public String updateProductPartially(@PathVariable int prodId, @RequestBody Product prod) {
         service.updateProductPartially(prodId, prod);
         return "Product updated Successfully!";
     }

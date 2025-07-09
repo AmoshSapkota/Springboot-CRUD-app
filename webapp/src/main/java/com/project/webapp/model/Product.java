@@ -1,13 +1,13 @@
 package com.project.webapp.model;
 
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Component
 @Entity
 public class Product {
     @Id

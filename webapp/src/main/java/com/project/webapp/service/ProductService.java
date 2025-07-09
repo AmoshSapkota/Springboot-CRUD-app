@@ -1,7 +1,5 @@
 package com.project.webapp.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ public class ProductService {
     public void addProduct(Product prod) {
         repo.save(prod);
     }
-    public void updateProductList(Product prod){
+    public void updateProduct(int prodId, Product prod){
 
         /* 
         for (int i = 0; i < products.size(); i++){
@@ -44,6 +42,7 @@ public class ProductService {
             }
         }
         */
+        prod.setProdId(prodId);
         repo.save(prod);
     }
     public void deleteProduct(int prodId){
@@ -54,26 +53,20 @@ public class ProductService {
             }
         }
         */
-        return repo.remove();
-    }
-    public void updateProduct(int prodId, Product prod) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getProdId() == prodId) {
-                products.set(i, prod);
-            }
-        }
+        repo.deleteById(prodId);
     }
     
     // Partial update for PATCH - only updates non-null/non-zero fields
     public void updateProductPartially(int prodId, Product updates) {
         Product existing = getProductById(prodId);
-        if (existing != null) {
+        if (existing != null && existing.getProdId() != 0) {
             if (updates.getProdName() != null && !updates.getProdName().isEmpty()) {
                 existing.setProdName(updates.getProdName());
             }
             if (updates.getPrice() > 0) {
                 existing.setPrice(updates.getPrice());
             }
+            repo.save(existing);
         }
     }
 }
