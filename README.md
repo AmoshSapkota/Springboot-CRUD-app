@@ -1,1 +1,1 @@
-This is the main repo to follow.
+Basic CRUD web app in Springboot
